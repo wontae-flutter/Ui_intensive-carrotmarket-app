@@ -10,14 +10,14 @@ class ChatMessageProvider with ChangeNotifier {
     chatMessages = await Future.delayed(Duration(microseconds: 500), () {
       return [
         ChatMessage(
-          sender: '당근이, ',
+          sender: '당근이',
           senderProfileImage: 'https://placeimg.com/200/100/people/grayscale',
           senderLocation: '대부동',
           sentDate: '1일전',
           sentMessage: 'developer 님,근처에 다양한 물품들이 아주 많이있습니다.',
         ),
         ChatMessage(
-            sender: 'Flutter ',
+            sender: 'Flutter',
             senderProfileImage: 'https://placeimg.com/200/100/people',
             senderLocation: '중동',
             sentDate: '2일전',

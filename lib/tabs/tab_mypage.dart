@@ -1,6 +1,8 @@
 import 'package:carrotmarket_app/theme.dart';
 import 'package:flutter/material.dart';
 import "package:flutter/cupertino.dart";
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import "package:carrotmarket_app/constants/mypage_menu.dart";
 
 //* 대부분의 앱에서 거의 필수적인 요소
 class MypageTab extends StatelessWidget {
@@ -27,11 +29,17 @@ class MypageTab extends StatelessWidget {
         children: [
           MypageHeader(),
           const SizedBox(height: 8.0),
-          // IconMenuCard
+          IconMenuCard(
+            iconMenus: iconMenu1,
+          ),
           const SizedBox(height: 8.0),
-          // IconMenuCard
+          IconMenuCard(
+            iconMenus: iconMenu2,
+          ),
           const SizedBox(height: 8.0),
-          // IconMenuCard
+          IconMenuCard(
+            iconMenus: iconMenu3,
+          ),
         ],
       ),
     );
@@ -60,9 +68,12 @@ class MypageHeader extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  // _buildRoundTextButton('판매내역', FontAwesomeIcons.receipt),
-                  // _buildRoundTextButton('구매내역', FontAwesomeIcons.shoppingBag),
-                  // _buildRoundTextButton('관심목록', FontAwesomeIcons.heart),
+                  _buildRoundTextButton(
+                      buttonName: '판매내역', icon: FontAwesomeIcons.receipt),
+                  _buildRoundTextButton(
+                      buttonName: '구매내역', icon: FontAwesomeIcons.shoppingBag),
+                  _buildRoundTextButton(
+                      buttonName: '관심목록', icon: FontAwesomeIcons.heart),
                 ],
               )
             ],
@@ -150,10 +161,88 @@ class _buildProfileButton extends StatelessWidget {
 }
 
 class _buildRoundTextButton extends StatelessWidget {
-  const _buildRoundTextButton({super.key});
+  final String buttonName;
+  final IconData icon;
+
+  const _buildRoundTextButton({
+    super.key,
+    required this.buttonName,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(children: [
+      Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(255, 226, 208, 1),
+          border: Border.all(color: Color(0xFFD4D5DD), width: 0.5),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Center(
+            child: Icon(
+          icon,
+          color: Colors.orange,
+        )),
+      ),
+      SizedBox(
+        height: 4.0,
+      ),
+      Text(buttonName),
+    ]);
+  }
+}
+
+class IconMenuCard extends StatelessWidget {
+  final List<IconMenu> iconMenus;
+  const IconMenuCard({
+    super.key,
+    required this.iconMenus,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        elevation: 0.5,
+        child: Column(
+          children: List.generate(
+              iconMenus.length,
+              (index) => _buildRowIconMenu(
+                  title: iconMenus[index].title,
+                  iconData: iconMenus[index].iconData)),
+        ));
+  }
+}
+
+class _buildRowIconMenu extends StatelessWidget {
+  final String title;
+  final IconData iconData;
+
+  const _buildRowIconMenu({
+    super.key,
+    required this.title,
+    required this.iconData,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      height: 50,
+      child: Row(
+        children: [
+          Icon(iconData, size: 17),
+          const SizedBox(
+            width: 20,
+          ),
+          Text(
+            title,
+            style: textTheme().subtitle1,
+          )
+        ],
+      ),
+    );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:carrotmarket_app/providers/provider_all.dart';
 import "package:carrotmarket_app/theme.dart";
 import "package:carrotmarket_app/screens/screen_all.dart";
 import 'package:provider/provider.dart';
+import 'package:carrotmarket_app/providers/provider_all.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => ChatMessageProvider()),
       ],
       child: MaterialApp(
         title: 'carrot_market',

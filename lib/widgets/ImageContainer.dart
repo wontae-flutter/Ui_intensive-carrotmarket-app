@@ -9,9 +9,9 @@ class ImageContainer extends StatelessWidget {
   const ImageContainer(
     Key? key,
     this.imageUrl,
-    this.borderRadius,
     this.width,
     this.height,
+    this.borderRadius,
   ) : super(key: key);
 
   @override

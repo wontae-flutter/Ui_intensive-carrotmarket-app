@@ -49,12 +49,12 @@ class HomeTab extends StatelessWidget {
               ),
               body: productProvider.products.length != 0
                   ? ListView.separated(
-                      itemBuilder: (context, index) => const Divider(
+                      separatorBuilder: (context, index) => const Divider(
                             height: 0,
                             indent: 16,
                             endIndent: 16,
                           ),
-                      separatorBuilder: (context, index) =>
+                      itemBuilder: (context, index) =>
                           ProductCard(product: productProvider.products[index]),
                       itemCount: productProvider.products.length)
                   : Center(
